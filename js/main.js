@@ -214,7 +214,8 @@ if (heroSection) heroObserver.observe(heroSection);
 function addRevealClasses() {
   const elements = document.querySelectorAll(
     '.about-card, .service-card, .portfolio-item, .team-card, ' +
-    '.contact-info-item, .contact-form, .section-header, .portfolio-input-area'
+    '.contact-info-item, .contact-form, .section-header, .portfolio-input-area, ' +
+    '.why-us-card, .process-step, .pricing-card, .faq-item'
   );
   elements.forEach((el, i) => {
     el.classList.add('reveal');
@@ -361,6 +362,44 @@ tiltCards.forEach(card => {
     card.style.transform = '';
   });
 });
+
+/* ===== FAQ ACCORDION ===== */
+const faqItems = document.querySelectorAll('.faq-item');
+faqItems.forEach(item => {
+  const question = item.querySelector('.faq-question');
+  if (question) {
+    question.addEventListener('click', () => {
+      const isActive = item.classList.contains('active');
+
+      faqItems.forEach(other => {
+        other.classList.remove('active');
+        const btn = other.querySelector('.faq-question');
+        if (btn) btn.setAttribute('aria-expanded', 'false');
+      });
+
+      if (!isActive) {
+        item.classList.add('active');
+        question.setAttribute('aria-expanded', 'true');
+      }
+    });
+  }
+});
+
+/* ===== BACK TO TOP ===== */
+const backToTopBtn = document.getElementById('backToTop');
+if (backToTopBtn) {
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 600) {
+      backToTopBtn.classList.add('visible');
+    } else {
+      backToTopBtn.classList.remove('visible');
+    }
+  });
+
+  backToTopBtn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+}
 
 /* ===== SMOOTH SCROLL ===== */
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
