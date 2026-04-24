@@ -40,9 +40,9 @@ python3 -m http.server 8000
 npx serve .
 ```
 
-## Team (Mock Names — To Be Updated)
+## Team
 
-1. Alex Morgan — Lead Developer
-2. Jamie Rivera — UI/UX Designer
-3. Sam Patel — Backend Engineer
-4. Taylor Kim — Project Manager
+1. Gladys Merab — Lead Developer
+2. John Memusi — UI/UX Designer
+3. Sebastian Kigen — Backend Engineer
+4. Sam Ruiru — Project Manager
