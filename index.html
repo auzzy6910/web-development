@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Angel Developer — We Build Digital Experiences</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+</head>
+<body>
+  <!-- Custom Cursor -->
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <!-- Loader -->
+  <div class="loader" id="loader">
+    <div class="loader-content">
+      <div class="loader-logo">
+        <span class="loader-angel">Angel</span>
+        <span class="loader-dev">Developer</span>
+      </div>
+      <div class="loader-bar">
+        <div class="loader-bar-fill"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="nav" id="nav">
+    <div class="nav-logo">
+      <span class="nav-logo-icon"><i class="fas fa-code"></i></span>
+      <span class="nav-logo-text">Angel<span class="highlight">Dev</span></span>
+    </div>
+    <div class="nav-links" id="navLinks">
+      <a href="#home" class="nav-link active" data-section="home">Home</a>
+      <a href="#about" class="nav-link" data-section="about">About</a>
+      <a href="#services" class="nav-link" data-section="services">Services</a>
+      <a href="#portfolio" class="nav-link" data-section="portfolio">Portfolio</a>
+      <a href="#team" class="nav-link" data-section="team">Team</a>
+      <a href="#contact" class="nav-link" data-section="contact">Contact</a>
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- Mobile Menu Overlay -->
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu-links">
+      <a href="#home" class="mobile-link" data-section="home">Home</a>
+      <a href="#about" class="mobile-link" data-section="about">About</a>
+      <a href="#services" class="mobile-link" data-section="services">Services</a>
+      <a href="#portfolio" class="mobile-link" data-section="portfolio">Portfolio</a>
+      <a href="#team" class="mobile-link" data-section="team">Team</a>
+      <a href="#contact" class="mobile-link" data-section="contact">Contact</a>
+    </div>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="section hero" id="home">
+    <canvas id="particleCanvas"></canvas>
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="badge-dot"></span>
+        <span>Web Development Agency</span>
+      </div>
+      <h1 class="hero-title">
+        <span class="title-line" data-delay="0">We Craft</span>
+        <span class="title-line gradient-text" data-delay="1">Digital</span>
+        <span class="title-line" data-delay="2">Experiences</span>
+      </h1>
+      <p class="hero-subtitle">Building tomorrow's web, today. We transform ideas into stunning, high-performance digital products that captivate and convert.</p>
+      <div class="hero-cta">
+        <a href="#portfolio" class="btn btn-primary">
+          <span>View Our Work</span>
+          <i class="fas fa-arrow-right"></i>
+        </a>
+        <a href="#contact" class="btn btn-outline">
+          <span>Get In Touch</span>
+        </a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat">
+          <span class="stat-number" data-count="150">0</span><span class="stat-plus">+</span>
+          <span class="stat-label">Projects Delivered</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number" data-count="98">0</span><span class="stat-plus">%</span>
+          <span class="stat-label">Client Satisfaction</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number" data-count="4">0</span><span class="stat-plus"></span>
+          <span class="stat-label">Years Experience</span>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-indicator">
+      <div class="scroll-line"></div>
+      <span>Scroll Down</span>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="section about" id="about">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Who We Are</span>
+        <h2 class="section-title">We Are <span class="gradient-text">Angel Developer</span></h2>
+        <p class="section-desc">A passionate team of developers, designers, and strategists dedicated to building exceptional digital experiences.</p>
+      </div>
+      <div class="about-grid">
+        <div class="about-card glass-card">
+          <div class="about-card-icon"><i class="fas fa-rocket"></i></div>
+          <h3>Our Mission</h3>
+          <p>To empower businesses with cutting-edge web solutions that drive growth, engagement, and digital transformation.</p>
+        </div>
+        <div class="about-card glass-card">
+          <div class="about-card-icon"><i class="fas fa-eye"></i></div>
+          <h3>Our Vision</h3>
+          <p>To be the go-to web development partner for businesses seeking innovation, quality, and a human-centered digital presence.</p>
+        </div>
+        <div class="about-card glass-card">
+          <div class="about-card-icon"><i class="fas fa-heart"></i></div>
+          <h3>Our Values</h3>
+          <p>Transparency, creativity, collaboration, and relentless pursuit of excellence in every line of code we write.</p>
+        </div>
+      </div>
+      <div class="about-tech">
+        <h3 class="tech-title">Technologies We Love</h3>
+        <div class="tech-marquee">
+          <div class="tech-track">
+            <span class="tech-item"><i class="fab fa-react"></i> React</span>
+            <span class="tech-item"><i class="fab fa-vuejs"></i> Vue.js</span>
+            <span class="tech-item"><i class="fab fa-angular"></i> Angular</span>
+            <span class="tech-item"><i class="fab fa-node-js"></i> Node.js</span>
+            <span class="tech-item"><i class="fab fa-python"></i> Python</span>
+            <span class="tech-item"><i class="fab fa-figma"></i> Figma</span>
+            <span class="tech-item"><i class="fab fa-aws"></i> AWS</span>
+            <span class="tech-item"><i class="fab fa-docker"></i> Docker</span>
+            <span class="tech-item"><i class="fab fa-js-square"></i> TypeScript</span>
+            <span class="tech-item"><i class="fas fa-database"></i> PostgreSQL</span>
+            <span class="tech-item"><i class="fab fa-react"></i> React</span>
+            <span class="tech-item"><i class="fab fa-vuejs"></i> Vue.js</span>
+            <span class="tech-item"><i class="fab fa-angular"></i> Angular</span>
+            <span class="tech-item"><i class="fab fa-node-js"></i> Node.js</span>
+            <span class="tech-item"><i class="fab fa-python"></i> Python</span>
+            <span class="tech-item"><i class="fab fa-figma"></i> Figma</span>
+            <span class="tech-item"><i class="fab fa-aws"></i> AWS</span>
+            <span class="tech-item"><i class="fab fa-docker"></i> Docker</span>
+            <span class="tech-item"><i class="fab fa-js-square"></i> TypeScript</span>
+            <span class="tech-item"><i class="fas fa-database"></i> PostgreSQL</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section class="section services" id="services">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">What We Do</span>
+        <h2 class="section-title">Our <span class="gradient-text">Services</span></h2>
+        <p class="section-desc">From concept to launch, we offer end-to-end web development services tailored to your business needs.</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card" data-tilt>
+          <div class="service-number">01</div>
+          <div class="service-icon"><i class="fas fa-palette"></i></div>
+          <h3>UI/UX Design</h3>
+          <p>Beautiful, intuitive interfaces that delight users and drive engagement through thoughtful design principles.</p>
+          <div class="service-tags">
+            <span>Wireframing</span><span>Prototyping</span><span>User Research</span>
+          </div>
+        </div>
+        <div class="service-card" data-tilt>
+          <div class="service-number">02</div>
+          <div class="service-icon"><i class="fas fa-code"></i></div>
+          <h3>Web Development</h3>
+          <p>Modern, responsive, and high-performance websites built with the latest frameworks and best practices.</p>
+          <div class="service-tags">
+            <span>React</span><span>Next.js</span><span>Vue</span>
+          </div>
+        </div>
+        <div class="service-card" data-tilt>
+          <div class="service-number">03</div>
+          <div class="service-icon"><i class="fas fa-mobile-alt"></i></div>
+          <h3>Mobile-First</h3>
+          <p>Responsive designs that provide seamless experiences across all devices—phones, tablets, and desktops.</p>
+          <div class="service-tags">
+            <span>PWA</span><span>Responsive</span><span>Cross-platform</span>
+          </div>
+        </div>
+        <div class="service-card" data-tilt>
+          <div class="service-number">04</div>
+          <div class="service-icon"><i class="fas fa-shopping-cart"></i></div>
+          <h3>E-Commerce</h3>
+          <p>Scalable online stores with secure payments, inventory management, and conversion-optimized checkout flows.</p>
+          <div class="service-tags">
+            <span>Shopify</span><span>Stripe</span><span>Custom</span>
+          </div>
+        </div>
+        <div class="service-card" data-tilt>
+          <div class="service-number">05</div>
+          <div class="service-icon"><i class="fas fa-server"></i></div>
+          <h3>Backend & APIs</h3>
+          <p>Robust backend systems and RESTful APIs that power your applications with security and scalability.</p>
+          <div class="service-tags">
+            <span>Node.js</span><span>Python</span><span>GraphQL</span>
+          </div>
+        </div>
+        <div class="service-card" data-tilt>
+          <div class="service-number">06</div>
+          <div class="service-icon"><i class="fas fa-chart-line"></i></div>
+          <h3>SEO & Performance</h3>
+          <p>Optimization strategies that boost your search rankings and ensure lightning-fast load times.</p>
+          <div class="service-tags">
+            <span>Core Web Vitals</span><span>Analytics</span><span>A/B Testing</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Portfolio Section -->
+  <section class="section portfolio" id="portfolio">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Our Work</span>
+        <h2 class="section-title">Featured <span class="gradient-text">Projects</span></h2>
+        <p class="section-desc">Explore our latest work — real websites we've built for real clients. Click any project to visit the live site.</p>
+      </div>
+
+      <!-- Portfolio Link Input -->
+      <div class="portfolio-input-area glass-card">
+        <div class="input-header">
+          <i class="fas fa-link"></i>
+          <h3>Showcase a Website</h3>
+          <p>Paste a URL below to preview and add it to the portfolio</p>
+        </div>
+        <div class="input-group">
+          <input type="url" id="portfolioUrl" placeholder="https://example.com" class="url-input" />
+          <button id="addPortfolioBtn" class="btn btn-primary btn-sm">
+            <i class="fas fa-plus"></i> Add Project
+          </button>
+        </div>
+      </div>
+
+      <!-- Portfolio Grid -->
+      <div class="portfolio-grid" id="portfolioGrid">
+        <!-- Default showcase items -->
+        <div class="portfolio-item" data-url="https://stripe.com">
+          <div class="portfolio-preview">
+            <div class="portfolio-iframe-wrap">
+              <iframe src="https://stripe.com" loading="lazy" sandbox="allow-scripts allow-same-origin" title="Stripe"></iframe>
+            </div>
+            <div class="portfolio-overlay">
+              <a href="https://stripe.com" target="_blank" rel="noopener noreferrer" class="portfolio-visit">
+                <i class="fas fa-external-link-alt"></i> Visit Site
+              </a>
+            </div>
+          </div>
+          <div class="portfolio-info">
+            <h4>Stripe</h4>
+            <p>Payment Infrastructure</p>
+          </div>
+        </div>
+        <div class="portfolio-item" data-url="https://linear.app">
+          <div class="portfolio-preview">
+            <div class="portfolio-iframe-wrap">
+              <iframe src="https://linear.app" loading="lazy" sandbox="allow-scripts allow-same-origin" title="Linear"></iframe>
+            </div>
+            <div class="portfolio-overlay">
+              <a href="https://linear.app" target="_blank" rel="noopener noreferrer" class="portfolio-visit">
+                <i class="fas fa-external-link-alt"></i> Visit Site
+              </a>
+            </div>
+          </div>
+          <div class="portfolio-info">
+            <h4>Linear</h4>
+            <p>Project Management Tool</p>
+          </div>
+        </div>
+        <div class="portfolio-item" data-url="https://vercel.com">
+          <div class="portfolio-preview">
+            <div class="portfolio-iframe-wrap">
+              <iframe src="https://vercel.com" loading="lazy" sandbox="allow-scripts allow-same-origin" title="Vercel"></iframe>
+            </div>
+            <div class="portfolio-overlay">
+              <a href="https://vercel.com" target="_blank" rel="noopener noreferrer" class="portfolio-visit">
+                <i class="fas fa-external-link-alt"></i> Visit Site
+              </a>
+            </div>
+          </div>
+          <div class="portfolio-info">
+            <h4>Vercel</h4>
+            <p>Deployment Platform</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team Section -->
+  <section class="section team" id="team">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Our Team</span>
+        <h2 class="section-title">Meet the <span class="gradient-text">Angels</span></h2>
+        <p class="section-desc">A talented crew of developers, designers, and strategists who turn ideas into digital reality.</p>
+      </div>
+      <div class="team-grid">
+        <div class="team-card">
+          <div class="team-card-inner">
+            <div class="team-card-front">
+              <div class="team-avatar">
+                <div class="avatar-placeholder"><i class="fas fa-user"></i></div>
+              </div>
+              <h4>Alex Morgan</h4>
+              <span class="team-role">Lead Developer</span>
+              <div class="team-hover-hint"><i class="fas fa-sync-alt"></i> Hover to flip</div>
+            </div>
+            <div class="team-card-back">
+              <h4>Alex Morgan</h4>
+              <p>Full-stack wizard with 5+ years of experience in React, Node.js, and cloud architecture. Loves clean code and strong coffee.</p>
+              <div class="team-socials">
+                <a href="#"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="team-card">
+          <div class="team-card-inner">
+            <div class="team-card-front">
+              <div class="team-avatar">
+                <div class="avatar-placeholder"><i class="fas fa-user"></i></div>
+              </div>
+              <h4>Jamie Rivera</h4>
+              <span class="team-role">UI/UX Designer</span>
+              <div class="team-hover-hint"><i class="fas fa-sync-alt"></i> Hover to flip</div>
+            </div>
+            <div class="team-card-back">
+              <h4>Jamie Rivera</h4>
+              <p>Creative designer passionate about user-centered design. Expert in Figma, motion design, and creating experiences that feel effortless.</p>
+              <div class="team-socials">
+                <a href="#"><i class="fab fa-dribbble"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#"><i class="fab fa-behance"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="team-card">
+          <div class="team-card-inner">
+            <div class="team-card-front">
+              <div class="team-avatar">
+                <div class="avatar-placeholder"><i class="fas fa-user"></i></div>
+              </div>
+              <h4>Sam Patel</h4>
+              <span class="team-role">Backend Engineer</span>
+              <div class="team-hover-hint"><i class="fas fa-sync-alt"></i> Hover to flip</div>
+            </div>
+            <div class="team-card-back">
+              <h4>Sam Patel</h4>
+              <p>API architect and database guru. Specializes in building scalable, secure backend systems with Python, Go, and PostgreSQL.</p>
+              <div class="team-socials">
+                <a href="#"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#"><i class="fab fa-stack-overflow"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="team-card">
+          <div class="team-card-inner">
+            <div class="team-card-front">
+              <div class="team-avatar">
+                <div class="avatar-placeholder"><i class="fas fa-user"></i></div>
+              </div>
+              <h4>Taylor Kim</h4>
+              <span class="team-role">Project Manager</span>
+              <div class="team-hover-hint"><i class="fas fa-sync-alt"></i> Hover to flip</div>
+            </div>
+            <div class="team-card-back">
+              <h4>Taylor Kim</h4>
+              <p>Strategic thinker who keeps projects on track. Expert in Agile methodologies, client communication, and turning chaos into clarity.</p>
+              <div class="team-socials">
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fas fa-envelope"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="section testimonials" id="testimonials">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">What Clients Say</span>
+        <h2 class="section-title">Client <span class="gradient-text">Testimonials</span></h2>
+      </div>
+      <div class="testimonial-carousel" id="testimonialCarousel">
+        <div class="testimonial-card glass-card active">
+          <div class="testimonial-quote"><i class="fas fa-quote-left"></i></div>
+          <p>"Angel Developer completely transformed our online presence. Their attention to detail and creative approach exceeded all our expectations."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar"><i class="fas fa-user-circle"></i></div>
+            <div>
+              <strong>Sarah Chen</strong>
+              <span>CEO, TechVista</span>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card glass-card">
+          <div class="testimonial-quote"><i class="fas fa-quote-left"></i></div>
+          <p>"Working with this team was a game-changer. They delivered a pixel-perfect, high-performance site that boosted our conversions by 40%."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar"><i class="fas fa-user-circle"></i></div>
+            <div>
+              <strong>Marcus Lee</strong>
+              <span>Founder, GrowthLab</span>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card glass-card">
+          <div class="testimonial-quote"><i class="fas fa-quote-left"></i></div>
+          <p>"Professional, responsive, and incredibly talented. Angel Developer is our go-to team for all web projects. Highly recommended!"</p>
+          <div class="testimonial-author">
+            <div class="author-avatar"><i class="fas fa-user-circle"></i></div>
+            <div>
+              <strong>Priya Sharma</strong>
+              <span>CMO, BrightPath</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-dots" id="testimonialDots">
+        <span class="dot active" data-index="0"></span>
+        <span class="dot" data-index="1"></span>
+        <span class="dot" data-index="2"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="section contact" id="contact">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Get In Touch</span>
+        <h2 class="section-title">Let's Build <span class="gradient-text">Together</span></h2>
+        <p class="section-desc">Have an idea? Let's turn it into something amazing. Reach out and let's start the conversation.</p>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-info">
+          <div class="contact-info-item glass-card">
+            <i class="fas fa-envelope"></i>
+            <div>
+              <strong>Email Us</strong>
+              <p>hello@angeldeveloper.com</p>
+            </div>
+          </div>
+          <div class="contact-info-item glass-card">
+            <i class="fas fa-phone"></i>
+            <div>
+              <strong>Call Us</strong>
+              <p>+1 (555) 123-4567</p>
+            </div>
+          </div>
+          <div class="contact-info-item glass-card">
+            <i class="fas fa-map-marker-alt"></i>
+            <div>
+              <strong>Visit Us</strong>
+              <p>123 Innovation Drive, Tech City</p>
+            </div>
+          </div>
+          <div class="contact-socials">
+            <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+        <form class="contact-form glass-card" id="contactForm">
+          <div class="form-row">
+            <div class="form-group">
+              <input type="text" id="name" placeholder=" " required />
+              <label for="name">Your Name</label>
+            </div>
+            <div class="form-group">
+              <input type="email" id="email" placeholder=" " required />
+              <label for="email">Your Email</label>
+            </div>
+          </div>
+          <div class="form-group">
+            <input type="text" id="subject" placeholder=" " />
+            <label for="subject">Subject</label>
+          </div>
+          <div class="form-group">
+            <textarea id="message" rows="5" placeholder=" " required></textarea>
+            <label for="message">Your Message</label>
+          </div>
+          <button type="submit" class="btn btn-primary btn-full">
+            <span>Send Message</span>
+            <i class="fas fa-paper-plane"></i>
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="nav-logo">
+            <span class="nav-logo-icon"><i class="fas fa-code"></i></span>
+            <span class="nav-logo-text">Angel<span class="highlight">Dev</span></span>
+          </div>
+          <p>Building tomorrow's web, today. We transform ideas into stunning digital products.</p>
+        </div>
+        <div class="footer-links">
+          <h4>Quick Links</h4>
+          <a href="#home">Home</a>
+          <a href="#about">About</a>
+          <a href="#services">Services</a>
+          <a href="#portfolio">Portfolio</a>
+        </div>
+        <div class="footer-links">
+          <h4>Services</h4>
+          <a href="#services">Web Development</a>
+          <a href="#services">UI/UX Design</a>
+          <a href="#services">E-Commerce</a>
+          <a href="#services">SEO</a>
+        </div>
+        <div class="footer-links">
+          <h4>Connect</h4>
+          <a href="#team">Our Team</a>
+          <a href="#contact">Contact Us</a>
+          <a href="#">Careers</a>
+          <a href="#">Blog</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Angel Developer. All rights reserved.</p>
+        <p>Crafted with <i class="fas fa-heart" style="color: var(--blue-500);"></i> by Angel Developer</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
