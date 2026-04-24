@@ -143,6 +143,7 @@ if (navToggle) {
   navToggle.addEventListener('click', () => {
     navToggle.classList.toggle('active');
     mobileMenu.classList.toggle('active');
+    document.body.classList.toggle('menu-open');
   });
 }
 
@@ -150,6 +151,7 @@ navLinks.forEach(link => {
   link.addEventListener('click', () => {
     navToggle.classList.remove('active');
     mobileMenu.classList.remove('active');
+    document.body.classList.remove('menu-open');
   });
 });
 
@@ -214,7 +216,7 @@ if (heroSection) heroObserver.observe(heroSection);
 function addRevealClasses() {
   const elements = document.querySelectorAll(
     '.about-card, .service-card, .portfolio-item, .team-card, ' +
-    '.contact-info-item, .contact-form, .section-header, .portfolio-input-area'
+    '.contact-info-item, .contact-form, .section-header, .portfolio-input-area, .pricing-card'
   );
   elements.forEach((el, i) => {
     el.classList.add('reveal');
@@ -342,25 +344,42 @@ if (contactForm) {
   });
 }
 
+/* ===== TEAM CARD TAP-TO-FLIP (TOUCH DEVICES) ===== */
+const isTouchDevice = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+
+if (isTouchDevice) {
+  const teamCards = document.querySelectorAll('.team-card');
+  teamCards.forEach(card => {
+    card.addEventListener('click', () => {
+      teamCards.forEach(c => { if (c !== card) c.classList.remove('flipped'); });
+      card.classList.toggle('flipped');
+    });
+    const hint = card.querySelector('.team-hover-hint');
+    if (hint) hint.innerHTML = '<i class="fas fa-hand-pointer"></i> Tap to flip';
+  });
+}
+
 /* ===== TILT EFFECT ON SERVICE CARDS ===== */
 const tiltCards = document.querySelectorAll('[data-tilt]');
-tiltCards.forEach(card => {
-  card.addEventListener('mousemove', (e) => {
-    const rect = card.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    const centerX = rect.width / 2;
-    const centerY = rect.height / 2;
-    const rotateX = (y - centerY) / 20;
-    const rotateY = (centerX - x) / 20;
+if (!isTouchDevice) {
+  tiltCards.forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      const rotateX = (y - centerY) / 20;
+      const rotateY = (centerX - x) / 20;
 
-    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
-  });
+      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
+    });
 
-  card.addEventListener('mouseleave', () => {
-    card.style.transform = '';
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = '';
+    });
   });
-});
+}
 
 /* ===== SMOOTH SCROLL ===== */
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
