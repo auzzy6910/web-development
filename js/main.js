@@ -265,65 +265,41 @@ dots.forEach(dot => {
 
 testimonialInterval = setInterval(nextTestimonial, 5000);
 
-/* ===== PORTFOLIO URL INPUT ===== */
-const portfolioUrl = document.getElementById('portfolioUrl');
-const addPortfolioBtn = document.getElementById('addPortfolioBtn');
+/* ===== LOAD PORTFOLIO FROM LOCALSTORAGE ===== */
 const portfolioGrid = document.getElementById('portfolioGrid');
 
-if (addPortfolioBtn && portfolioUrl && portfolioGrid) {
-  addPortfolioBtn.addEventListener('click', () => {
-    const url = portfolioUrl.value.trim();
-    if (!url) return;
-
-    try {
-      const parsedUrl = new URL(url);
-      const hostname = parsedUrl.hostname.replace('www.', '');
-      const name = hostname.split('.')[0];
-      const displayName = name.charAt(0).toUpperCase() + name.slice(1);
-
-      const item = document.createElement('div');
-      item.className = 'portfolio-item reveal revealed';
-      item.setAttribute('data-url', url);
-      item.innerHTML = `
+function loadAdminPortfolio() {
+  if (!portfolioGrid) return;
+  try {
+    const items = JSON.parse(localStorage.getItem('angeldev_portfolio')) || [];
+    items.forEach(item => {
+      const el = document.createElement('div');
+      el.className = 'portfolio-item reveal revealed';
+      el.setAttribute('data-url', item.url);
+      el.innerHTML = `
         <div class="portfolio-preview">
           <div class="portfolio-iframe-wrap">
-            <iframe src="${url}" loading="lazy" sandbox="allow-scripts allow-same-origin" title="${displayName}"></iframe>
+            <iframe src="${item.url}" loading="lazy" sandbox="allow-scripts allow-same-origin" title="${item.name}"></iframe>
           </div>
           <div class="portfolio-overlay">
-            <a href="${url}" target="_blank" rel="noopener noreferrer" class="portfolio-visit">
+            <a href="${item.url}" target="_blank" rel="noopener noreferrer" class="portfolio-visit">
               <i class="fas fa-external-link-alt"></i> Visit Site
             </a>
           </div>
         </div>
         <div class="portfolio-info">
-          <h4>${displayName}</h4>
-          <p>${hostname}</p>
+          <h4>${item.name}</h4>
+          <p>${item.description}</p>
         </div>
       `;
-
-      portfolioGrid.appendChild(item);
-      portfolioUrl.value = '';
-
-      item.style.opacity = '0';
-      item.style.transform = 'translateY(30px)';
-      requestAnimationFrame(() => {
-        item.style.transition = 'all 0.6s ease';
-        item.style.opacity = '1';
-        item.style.transform = 'translateY(0)';
-      });
-
-    } catch {
-      portfolioUrl.style.borderColor = '#ef4444';
-      setTimeout(() => {
-        portfolioUrl.style.borderColor = '';
-      }, 2000);
-    }
-  });
-
-  portfolioUrl.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') addPortfolioBtn.click();
-  });
+      portfolioGrid.appendChild(el);
+    });
+  } catch {
+    /* no admin items to load */
+  }
 }
+
+loadAdminPortfolio();
 
 /* ===== CONTACT FORM ===== */
 const contactForm = document.getElementById('contactForm');
