@@ -271,7 +271,27 @@ const addPortfolioBtn = document.getElementById('addPortfolioBtn');
 const portfolioGrid = document.getElementById('portfolioGrid');
 
 if (addPortfolioBtn && portfolioUrl && portfolioGrid) {
-  addPortfolioBtn.addEventListener('click', () => {
+  const pwModal = document.getElementById('portfolioPasswordModal');
+  const pwInput = document.getElementById('portfolioPasswordInput');
+  const pwError = document.getElementById('portfolioPasswordError');
+  const pwSubmit = document.getElementById('portfolioPasswordSubmit');
+  const pwCancel = document.getElementById('portfolioPasswordCancel');
+  let portfolioUnlocked = false;
+
+  function showPasswordModal() {
+    pwModal.style.display = 'flex';
+    pwInput.value = '';
+    pwError.style.display = 'none';
+    pwInput.focus();
+  }
+
+  function hidePasswordModal() {
+    pwModal.style.display = 'none';
+    pwInput.value = '';
+    pwError.style.display = 'none';
+  }
+
+  function addPortfolioItem() {
     const url = portfolioUrl.value.trim();
     if (!url) return;
 
@@ -318,6 +338,39 @@ if (addPortfolioBtn && portfolioUrl && portfolioGrid) {
         portfolioUrl.style.borderColor = '';
       }, 2000);
     }
+  }
+
+  addPortfolioBtn.addEventListener('click', () => {
+    const url = portfolioUrl.value.trim();
+    if (!url) return;
+    if (portfolioUnlocked) {
+      addPortfolioItem();
+    } else {
+      showPasswordModal();
+    }
+  });
+
+  pwSubmit.addEventListener('click', () => {
+    if (pwInput.value === 'Austine@7828') {
+      portfolioUnlocked = true;
+      hidePasswordModal();
+      addPortfolioItem();
+    } else {
+      pwError.style.display = 'block';
+      pwInput.value = '';
+      pwInput.style.borderColor = '#ef4444';
+      setTimeout(() => { pwInput.style.borderColor = 'rgba(255,255,255,0.1)'; }, 1500);
+    }
+  });
+
+  pwCancel.addEventListener('click', hidePasswordModal);
+
+  pwModal.addEventListener('click', (e) => {
+    if (e.target === pwModal) hidePasswordModal();
+  });
+
+  pwInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') pwSubmit.click();
   });
 
   portfolioUrl.addEventListener('keypress', (e) => {
