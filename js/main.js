@@ -215,7 +215,7 @@ if (heroSection) heroObserver.observe(heroSection);
 /* ===== SCROLL REVEAL ===== */
 function addRevealClasses() {
   const elements = document.querySelectorAll(
-    '.about-card, .service-card, .portfolio-item, .team-card, ' +
+    '.service-card, .portfolio-item, .team-card, ' +
     '.contact-info-item, .contact-form, .section-header, .portfolio-input-area, .pricing-card'
   );
   elements.forEach((el, i) => {
