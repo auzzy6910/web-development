@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Angel Developer — We Build Digital Experiences</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+</head>
+<body>
+  <!-- Portfolio Password Modal -->
+  <div id="portfolioPasswordModal" style="
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(8px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 100000;
+    font-family: 'Space Grotesk', sans-serif;
+  ">
+    <div style="
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 24px;
+      padding: 40px 36px;
+      max-width: 400px;
+      width: 90%;
+      text-align: center;
+      box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+    ">
+      <i class="fas fa-lock" style="font-size: 36px; color: #3b82f6; margin-bottom: 16px; display: block;"></i>
+      <h2 style="color: #fff; font-size: 20px; margin: 0 0 6px;">Password Required</h2>
+      <p style="color: rgba(255,255,255,0.5); font-size: 13px; margin: 0 0 20px;">Enter the password to add a project</p>
+      <input
+        type="password"
+        id="portfolioPasswordInput"
+        placeholder="Enter password"
+        autocomplete="off"
+        style="
+          width: 100%;
+          padding: 12px 16px;
+          border: 2px solid rgba(255,255,255,0.1);
+          border-radius: 12px;
+          background: rgba(255,255,255,0.05);
+          color: #fff;
+          font-size: 15px;
+          font-family: 'Space Grotesk', sans-serif;
+          outline: none;
+          box-sizing: border-box;
+          transition: border-color 0.3s;
+          margin-bottom: 12px;
+        "
+      />
+      <p id="portfolioPasswordError" style="color: #ef4444; font-size: 13px; margin: 0 0 12px; display: none;">Incorrect password. Try again.</p>
+      <div style="display: flex; gap: 10px;">
+        <button id="portfolioPasswordCancel" style="
+          flex: 1;
+          padding: 12px;
+          background: rgba(255,255,255,0.08);
+          color: #fff;
+          border: 1px solid rgba(255,255,255,0.15);
+          border-radius: 12px;
+          font-size: 14px;
+          font-weight: 600;
+          font-family: 'Space Grotesk', sans-serif;
+          cursor: pointer;
+        ">Cancel</button>
+        <button id="portfolioPasswordSubmit" style="
+          flex: 1;
+          padding: 12px;
+          background: linear-gradient(135deg, #3b82f6, #2563eb);
+          color: #fff;
+          border: none;
+          border-radius: 12px;
+          font-size: 14px;
+          font-weight: 600;
+          font-family: 'Space Grotesk', sans-serif;
+          cursor: pointer;
+        ">Unlock</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Custom Cursor -->
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <!-- Loader -->
+  <div class="loader" id="loader">
+    <div class="loader-content">
+      <div class="loader-logo">
+        <span class="loader-angel">Angel</span>
+        <span class="loader-dev">Developer</span>
+      </div>
+      <div class="loader-bar">
+        <div class="loader-bar-fill"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="nav" id="nav">
+    <div class="nav-logo">
+      <span class="nav-logo-icon"><i class="fas fa-code"></i></span>
+      <span class="nav-logo-text">Angel<span class="highlight">Dev</span></span>
+    </div>
+    <div class="nav-links" id="navLinks">
+      <a href="#home" class="nav-link active" data-section="home">Home</a>
+      <a href="#services" class="nav-link" data-section="services">Services</a>
+      <a href="#portfolio" class="nav-link" data-section="portfolio">Portfolio</a>
+      <a href="#team" class="nav-link" data-section="team">Team</a>
+      <a href="#pricing" class="nav-link" data-section="pricing">Pricing</a>
+      <a href="#contact" class="nav-link" data-section="contact">Contact</a>
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- Mobile Menu Overlay -->
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu-links">
+      <a href="#home" class="mobile-link" data-section="home">Home</a>
+      <a href="#services" class="mobile-link" data-section="services">Services</a>
+      <a href="#portfolio" class="mobile-link" data-section="portfolio">Portfolio</a>
+      <a href="#team" class="mobile-link" data-section="team">Team</a>
+      <a href="#pricing" class="mobile-link" data-section="pricing">Pricing</a>
+      <a href="#contact" class="mobile-link" data-section="contact">Contact</a>
+    </div>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="section hero" id="home">
+    <canvas id="particleCanvas"></canvas>
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="badge-dot"></span>
+        <span>Web Development Agency</span>
+      </div>
+      <h1 class="hero-title">
+        <span class="title-line" data-delay="0">We Craft</span>
+        <span class="title-line gradient-text" data-delay="1">Digital</span>
+        <span class="title-line" data-delay="2">Experiences</span>
+      </h1>
+      <p class="hero-subtitle">Building tomorrow's web, today. We transform ideas into stunning, high-performance digital products that captivate and convert.</p>
+      <div class="hero-cta">
+        <a href="#portfolio" class="btn btn-primary">
+          <span>View Our Work</span>
+          <i class="fas fa-arrow-right"></i>
+        </a>
+        <a href="#contact" class="btn btn-outline">
+          <span>Get In Touch</span>
+        </a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat">
+          <span class="stat-number" data-count="150">0</span><span class="stat-plus">+</span>
+          <span class="stat-label">Projects Delivered</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number" data-count="98">0</span><span class="stat-plus">%</span>
+          <span class="stat-label">Client Satisfaction</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number" data-count="4">0</span><span class="stat-plus"></span>
+          <span class="stat-label">Years Experience</span>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-indicator">
+      <div class="scroll-line"></div>
+      <span>Scroll Down</span>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section class="section services" id="services">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">What We Do</span>
+        <h2 class="section-title">Our <span class="gradient-text">Services</span></h2>
+        <p class="section-desc">From concept to launch, we offer end-to-end web development services tailored to your business needs.</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card" data-tilt>
+          <div class="service-number">01</div>
+          <div class="service-icon"><i class="fas fa-palette"></i></div>
+          <h3>UI/UX Design</h3>
+          <p>Beautiful, intuitive interfaces that delight users and drive engagement through thoughtful design principles.</p>
+          <div class="service-tags">
+            <span>Wireframing</span><span>Prototyping</span><span>User Research</span>
+          </div>
+        </div>
+        <div class="service-card" data-tilt>
+          <div class="service-number">02</div>
+          <div class="service-icon"><i class="fas fa-code"></i></div>
+          <h3>Web Development</h3>
+          <p>Modern, responsive, and high-performance websites built with the latest frameworks and best practices.</p>
+          <div class="service-tags">
+            <span>React</span><span>Next.js</span><span>Vue</span>
+          </div>
+        </div>
+        <div class="service-card" data-tilt>
+          <div class="service-number">03</div>
+          <div class="service-icon"><i class="fas fa-mobile-alt"></i></div>
+          <h3>Mobile-First</h3>
+          <p>Responsive designs that provide seamless experiences across all devices—phones, tablets, and desktops.</p>
+          <div class="service-tags">
+            <span>PWA</span><span>Responsive</span><span>Cross-platform</span>
+          </div>
+        </div>
+        <div class="service-card" data-tilt>
+          <div class="service-number">04</div>
+          <div class="service-icon"><i class="fas fa-shopping-cart"></i></div>
+          <h3>E-Commerce</h3>
+          <p>Scalable online stores with secure payments, inventory management, and conversion-optimized checkout flows.</p>
+          <div class="service-tags">
+            <span>Shopify</span><span>Stripe</span><span>Custom</span>
+          </div>
+        </div>
+        <div class="service-card" data-tilt>
+          <div class="service-number">05</div>
+          <div class="service-icon"><i class="fas fa-server"></i></div>
+          <h3>Backend & APIs</h3>
+          <p>Robust backend systems and RESTful APIs that power your applications with security and scalability.</p>
+          <div class="service-tags">
+            <span>Node.js</span><span>Python</span><span>GraphQL</span>
+          </div>
+        </div>
+        <div class="service-card" data-tilt>
+          <div class="service-number">06</div>
+          <div class="service-icon"><i class="fas fa-chart-line"></i></div>
+          <h3>SEO & Performance</h3>
+          <p>Optimization strategies that boost your search rankings and ensure lightning-fast load times.</p>
+          <div class="service-tags">
+            <span>Core Web Vitals</span><span>Analytics</span><span>A/B Testing</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Portfolio Section -->
+  <section class="section portfolio" id="portfolio">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Our Work</span>
+        <h2 class="section-title">Featured <span class="gradient-text">Projects</span></h2>
+        <p class="section-desc">Explore our latest work — real websites we've built for real clients. Click any project to visit the live site.</p>
+      </div>
+
+      <!-- Portfolio Link Input -->
+      <div class="portfolio-input-area glass-card">
+        <div class="input-header">
+          <i class="fas fa-link"></i>
+          <h3>Showcase a Website</h3>
+          <p>Paste a URL below to preview and add it to the portfolio</p>
+        </div>
+        <div class="input-group">
+          <input type="url" id="portfolioUrl" placeholder="https://example.com" class="url-input" />
+          <button id="addPortfolioBtn" class="btn btn-primary btn-sm">
+            <i class="fas fa-plus"></i> Add Project
+          </button>
+        </div>
+      </div>
+
+      <!-- Portfolio Grid -->
+      <div class="portfolio-grid" id="portfolioGrid">
+        <!-- Add your projects using the form above -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Team Section -->
+  <section class="section team" id="team">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Our Team</span>
+        <h2 class="section-title">Meet the <span class="gradient-text">Angels</span></h2>
+        <p class="section-desc">A talented crew of developers, designers, and strategists who turn ideas into digital reality.</p>
+      </div>
+      <div class="team-grid">
+        <div class="team-card">
+          <div class="team-card-inner">
+            <div class="team-card-front">
+              <div class="team-avatar">
+                <img src="images/gladys.jpg" alt="Gladys Merab" />
+              </div>
+              <h4>Gladys Merab</h4>
+              <span class="team-role">Lead Developer</span>
+              <div class="team-hover-hint"><i class="fas fa-sync-alt"></i> Hover to flip</div>
+            </div>
+            <div class="team-card-back">
+              <h4>Gladys Merab</h4>
+              <p>Full-stack developer with expertise in React, Node.js, and cloud architecture. Passionate about building clean, scalable solutions.</p>
+              <div class="team-socials">
+                <a href="https://wa.me/254714207523" target="_blank"><i class="fab fa-whatsapp"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="team-card">
+          <div class="team-card-inner">
+            <div class="team-card-front">
+              <div class="team-avatar">
+                <img src="images/john.jpg" alt="John Memusi" />
+              </div>
+              <h4>John Memusi</h4>
+              <span class="team-role">UI/UX Designer</span>
+              <div class="team-hover-hint"><i class="fas fa-sync-alt"></i> Hover to flip</div>
+            </div>
+            <div class="team-card-back">
+              <h4>John Memusi</h4>
+              <p>Creative designer passionate about user-centered design. Expert in Figma, motion design, and crafting experiences that feel effortless.</p>
+              <div class="team-socials">
+                <a href="https://wa.me/254714207523" target="_blank"><i class="fab fa-whatsapp"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="team-card">
+          <div class="team-card-inner">
+            <div class="team-card-front">
+              <div class="team-avatar">
+                <img src="images/sebastian.jpg" alt="Sebastian Kigen" />
+              </div>
+              <h4>Sebastian Kigen</h4>
+              <span class="team-role">Backend Engineer</span>
+              <div class="team-hover-hint"><i class="fas fa-sync-alt"></i> Hover to flip</div>
+            </div>
+            <div class="team-card-back">
+              <h4>Sebastian Kigen</h4>
+              <p>API architect and database expert. Specializes in building scalable, secure backend systems with Python, Node.js, and PostgreSQL.</p>
+              <div class="team-socials">
+                <a href="https://wa.me/254714207523" target="_blank"><i class="fab fa-whatsapp"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="team-card">
+          <div class="team-card-inner">
+            <div class="team-card-front">
+              <div class="team-avatar">
+                <img src="images/sam.jpg" alt="Sam Ruiru" />
+              </div>
+              <h4>Sam Ruiru</h4>
+              <span class="team-role">Project Manager</span>
+              <div class="team-hover-hint"><i class="fas fa-sync-alt"></i> Hover to flip</div>
+            </div>
+            <div class="team-card-back">
+              <h4>Sam Ruiru</h4>
+              <p>Strategic thinker who keeps projects on track. Expert in Agile methodologies, client communication, and delivering results on time.</p>
+              <div class="team-socials">
+                <a href="https://wa.me/254714207523" target="_blank"><i class="fab fa-whatsapp"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="section testimonials" id="testimonials">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">What Clients Say</span>
+        <h2 class="section-title">Client <span class="gradient-text">Testimonials</span></h2>
+      </div>
+      <div class="testimonial-carousel" id="testimonialCarousel">
+        <div class="testimonial-card glass-card active">
+          <div class="testimonial-quote"><i class="fas fa-quote-left"></i></div>
+          <p>"Angel Developer built our e-commerce platform from scratch. Sales went up 60% in the first month after launch. Their team truly understands the Kenyan market."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar"><i class="fas fa-user-circle"></i></div>
+            <div>
+              <strong>Wanjiku Kamau</strong>
+              <span>Founder, Nairobi Naturals</span>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card glass-card">
+          <div class="testimonial-quote"><i class="fas fa-quote-left"></i></div>
+          <p>"We needed a modern website for our safari tour business. Angel Developer delivered a stunning site with online booking and M-Pesa integration. Highly recommend!"</p>
+          <div class="testimonial-author">
+            <div class="author-avatar"><i class="fas fa-user-circle"></i></div>
+            <div>
+              <strong>James Ochieng</strong>
+              <span>CEO, Savanna Adventures</span>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card glass-card">
+          <div class="testimonial-quote"><i class="fas fa-quote-left"></i></div>
+          <p>"Professional, fast, and affordable. They redesigned our restaurant website and added WhatsApp ordering. Our online orders doubled within weeks!"</p>
+          <div class="testimonial-author">
+            <div class="author-avatar"><i class="fas fa-user-circle"></i></div>
+            <div>
+              <strong>Amina Mwangi</strong>
+              <span>Owner, Mama's Kitchen Mombasa</span>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card glass-card">
+          <div class="testimonial-quote"><i class="fas fa-quote-left"></i></div>
+          <p>"Angel Developer helped digitize our real estate listings. The site loads fast, looks amazing on mobile, and our client inquiries have tripled since launch."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar"><i class="fas fa-user-circle"></i></div>
+            <div>
+              <strong>Kevin Mutua</strong>
+              <span>Director, Nyali Properties</span>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card glass-card">
+          <div class="testimonial-quote"><i class="fas fa-quote-left"></i></div>
+          <p>"As a Nairobi-based startup, we needed a partner who understood our vision. Angel Developer delivered a world-class web app on time and within budget."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar"><i class="fas fa-user-circle"></i></div>
+            <div>
+              <strong>Grace Njeri</strong>
+              <span>Co-founder, PaySoko</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-dots" id="testimonialDots">
+        <span class="dot active" data-index="0"></span>
+        <span class="dot" data-index="1"></span>
+        <span class="dot" data-index="2"></span>
+        <span class="dot" data-index="3"></span>
+        <span class="dot" data-index="4"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Section -->
+  <section class="section pricing" id="pricing">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Our Pricing</span>
+        <h2 class="section-title">Choose Your <span class="gradient-text">Plan</span></h2>
+        <p class="section-desc">Transparent pricing for every stage of your digital journey. No hidden fees.</p>
+      </div>
+      <div class="pricing-grid">
+        <!-- Starter Plan -->
+        <div class="pricing-card glass-card">
+          <div class="pricing-tier">Starter</div>
+          <h3 class="pricing-name">Basic Website</h3>
+          <div class="pricing-price">
+            <span class="pricing-currency">KSH</span>
+            <span class="pricing-amount">5,000 — 12,000</span>
+          </div>
+          <p class="pricing-desc">Perfect for personal brands, portfolios, and small businesses starting online.</p>
+          <ul class="pricing-features">
+            <li class="included"><i class="fas fa-check"></i> Up to 5 pages</li>
+            <li class="included"><i class="fas fa-check"></i> Responsive mobile design</li>
+            <li class="included"><i class="fas fa-check"></i> Contact form</li>
+            <li class="included"><i class="fas fa-check"></i> Basic SEO</li>
+            <li class="included"><i class="fas fa-check"></i> 30 days free support</li>
+            <li class="excluded"><i class="fas fa-times"></i> Payment integration</li>
+            <li class="excluded"><i class="fas fa-times"></i> E-commerce</li>
+          </ul>
+          <a href="#contact" class="btn btn-outline btn-full">Get Started</a>
+        </div>
+        <!-- Business Plan -->
+        <div class="pricing-card glass-card popular">
+          <div class="pricing-badge">Popular</div>
+          <div class="pricing-tier">Business</div>
+          <h3 class="pricing-name">Pro Website</h3>
+          <div class="pricing-price">
+            <span class="pricing-currency">KSH</span>
+            <span class="pricing-amount">18,000 — 38,000</span>
+          </div>
+          <p class="pricing-desc">Full business website with booking, M-Pesa, and advanced features.</p>
+          <ul class="pricing-features">
+            <li class="included"><i class="fas fa-check"></i> Up to 15 pages</li>
+            <li class="included"><i class="fas fa-check"></i> Payment integration</li>
+            <li class="included"><i class="fas fa-check"></i> Online booking</li>
+            <li class="included"><i class="fas fa-check"></i> Full SEO</li>
+            <li class="included"><i class="fas fa-check"></i> Google Analytics</li>
+            <li class="included"><i class="fas fa-check"></i> WhatsApp chat button</li>
+            <li class="included"><i class="fas fa-check"></i> 60 days free support</li>
+          </ul>
+          <a href="#contact" class="btn btn-primary btn-full">Get Started</a>
+        </div>
+        <!-- Enterprise Plan -->
+        <div class="pricing-card glass-card">
+          <div class="pricing-tier">Enterprise</div>
+          <h3 class="pricing-name">E-Commerce Store</h3>
+          <div class="pricing-price">
+            <span class="pricing-currency">KSH</span>
+            <span class="pricing-amount">40,000 — 300,000</span>
+          </div>
+          <p class="pricing-desc">Full-featured online store with inventory, payments, and admin dashboard.</p>
+          <ul class="pricing-features">
+            <li class="included"><i class="fas fa-check"></i> Unlimited products</li>
+            <li class="included"><i class="fas fa-check"></i> Payment integration</li>
+            <li class="included"><i class="fas fa-check"></i> Customer accounts</li>
+            <li class="included"><i class="fas fa-check"></i> Order management</li>
+            <li class="included"><i class="fas fa-check"></i> SMS notifications</li>
+            <li class="included"><i class="fas fa-check"></i> Admin dashboard</li>
+            <li class="included"><i class="fas fa-check"></i> 90 days support</li>
+          </ul>
+          <a href="#contact" class="btn btn-outline btn-full">Get Started</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="section contact" id="contact">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Get In Touch</span>
+        <h2 class="section-title">Let's Build <span class="gradient-text">Together</span></h2>
+        <p class="section-desc">Have an idea? Let's turn it into something amazing. Reach out and let's start the conversation.</p>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-info">
+          <div class="contact-info-item glass-card">
+            <i class="fas fa-envelope"></i>
+            <div>
+              <strong>Email Us</strong>
+              <p>auzzy6910@gmail.com</p>
+            </div>
+          </div>
+          <div class="contact-info-item glass-card">
+            <i class="fas fa-phone"></i>
+            <div>
+              <strong>Call Us</strong>
+              <p>+254714207523</p>
+            </div>
+          </div>
+          <div class="contact-socials">
+            <a href="https://wa.me/254714207523" target="_blank" class="social-link"><i class="fab fa-whatsapp"></i></a>
+            <a href="mailto:auzzy6910@gmail.com" class="social-link"><i class="fas fa-envelope"></i></a>
+          </div>
+        </div>
+        <form class="contact-form glass-card" id="contactForm">
+          <div class="form-row">
+            <div class="form-group">
+              <input type="text" id="name" placeholder=" " required />
+              <label for="name">Your Name</label>
+            </div>
+            <div class="form-group">
+              <input type="email" id="email" placeholder=" " required />
+              <label for="email">Your Email</label>
+            </div>
+          </div>
+          <div class="form-group">
+            <input type="text" id="subject" placeholder=" " />
+            <label for="subject">Subject</label>
+          </div>
+          <div class="form-group">
+            <textarea id="message" rows="5" placeholder=" " required></textarea>
+            <label for="message">Your Message</label>
+          </div>
+          <button type="submit" class="btn btn-primary btn-full">
+            <span>Send Message</span>
+            <i class="fas fa-paper-plane"></i>
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="nav-logo">
+            <span class="nav-logo-icon"><i class="fas fa-code"></i></span>
+            <span class="nav-logo-text">Angel<span class="highlight">Dev</span></span>
+          </div>
+          <p>Building tomorrow's web, today. We transform ideas into stunning digital products.</p>
+        </div>
+        <div class="footer-links">
+          <h4>Quick Links</h4>
+          <a href="#home">Home</a>
+          <a href="#services">Services</a>
+          <a href="#portfolio">Portfolio</a>
+        </div>
+        <div class="footer-links">
+          <h4>Services</h4>
+          <a href="#services">Web Development</a>
+          <a href="#services">UI/UX Design</a>
+          <a href="#services">E-Commerce</a>
+          <a href="#services">SEO</a>
+        </div>
+        <div class="footer-links">
+          <h4>Connect</h4>
+          <a href="#team">Our Team</a>
+          <a href="#contact">Contact Us</a>
+          <a href="#">Careers</a>
+          <a href="#">Blog</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Angel Developer. All rights reserved.</p>
+        <p>Crafted with <i class="fas fa-heart" style="color: var(--blue-500);"></i> by Angel Developer</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WhatsApp Floating Button -->
+  <a href="https://wa.me/254714207523" target="_blank" class="whatsapp-float" aria-label="Chat on WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
